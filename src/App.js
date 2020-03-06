@@ -1,11 +1,11 @@
 import React from 'react';
-import ReverseEncode from './reverse';
+import MainView from './mainView';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <ReverseEncode/>
+      <MainView/>
     </div>
   );
 }
