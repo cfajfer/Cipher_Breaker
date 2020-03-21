@@ -21,8 +21,7 @@ class SideView extends React.Component {
     };
   }
 
-  frequency() {
-    var str = this.state.str;
+  frequency(str) {
     for(const element of str) {
       let i = this.data.labels.indexOf(element);
       this.data.datasets[0].data[i]++;
@@ -30,15 +29,15 @@ class SideView extends React.Component {
   }
 
   analyzeEvent(){
-    this.setState({str: this.props.getStr()});
-    this.frequency();
+    var tempstr = this.props.getStr();
+    this.frequency(tempstr);
+    this.setState({str: tempstr});
   }
 
   render() {
     return(
       <div>
-        <Bar ref={this.chartReference} data={this.data}/>
-        <h3>here</h3>
+        <Bar ref={this.chartReference} data={this.data} redraw={true}/>
         <button onClick={this.analyzeEvent}>Analyze</button>
       </div>
     );
