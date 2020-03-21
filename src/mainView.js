@@ -13,7 +13,6 @@ class MainView extends React.Component {
       },
       str: ""
     };
-
     //Bind Update Methods
     this.textareaEvent = this.textareaEvent.bind(this);
     this.toggleView = this.toggleView.bind(this);
@@ -26,15 +25,18 @@ class MainView extends React.Component {
   toggleView(menu, component){
     switch(component){
       case "reverseEncrypt":
-          this.setState(prevState => ({
-            active: {
-            ...prevState.active,
-            current: "reverseEncrypt",
-            menu: !this.state.active.menu,
-            reverse: !this.state.active.reverse,
-            }
-          }));
-          break;
+        this.setState(prevState => ({
+          active: {
+          ...prevState.active,
+          current: "reverseEncrypt",
+          menu: !this.state.active.menu,
+          reverse: !this.state.active.reverse,
+          }
+        }));
+        break;
+
+      default:
+        break;
     }
     if(menu === true){
       this.setState(prevState => ({
@@ -50,7 +52,7 @@ class MainView extends React.Component {
     if(this.state.active.menu === true){
       return(
         <div>
-          <textarea value={this.state.str} onChange={this.textareaEvent}></textarea>
+          <textarea value={this.state.str} onChange={(event) => {this.textareaEvent(event); this.props.textareaEvent(event);}}></textarea>
           <br/>
           <button type="button" onClick={() => this.toggleView(false, "reverseEncrypt")}>Reverse Encrypt Toggle</button>
         </div>
@@ -59,9 +61,10 @@ class MainView extends React.Component {
     else if(this.state.active.menu === false){
       return(
         <div>
-          <a class="close" onClick={() => this.toggleView(true, this.state.active.current)}></a>
+          <button className="close" onClick={() => this.toggleView(true, this.state.active.current)}></button>
           <p>{this.state.str}</p>
           {this.state.active.reverse && <Reverse translation="encrypt" subType="string" str={this.state.str}/>}
+
         </div>
       );
     }

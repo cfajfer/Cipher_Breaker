@@ -27,4 +27,19 @@
 .close:after {
   transform: rotate(-45deg);
 }
+.split {
+  height: 100%;
+  position: fixed;
+  padding-top: 20px;
+  top: 0;
+  overflow-x: hidden;
+}
+#main {
+  width: 65%;
+  left: 0;
+}
+#side {
+  width: 35%;
+  right: 0;
+}
 
