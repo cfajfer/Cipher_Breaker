@@ -13,13 +13,25 @@ class MainView extends React.Component {
       },
       str: ""
     };
+    this.input = "";
     //Bind Update Methods
     this.textareaEvent = this.textareaEvent.bind(this);
     this.toggleView = this.toggleView.bind(this);
+    this.inputSanatize = this.inputSanatize.bind(this);
   }
 
   textareaEvent(event) {
-    this.setState({str: event.target.value});
+    this.input = event.target.value
+    this.inputSanatize();
+    this.props.callBackStr(this.state.str);
+  }
+
+  inputSanatize(){ //Produces UpperCase string w/ no whitespace
+    var cleanStr = this.input;
+    cleanStr = cleanStr.trim();
+    cleanStr = cleanStr.toUpperCase();
+    cleanStr = cleanStr.replace(/\s+/g, '');
+    this.setState({str: cleanStr});
   }
 
   toggleView(menu, component){
@@ -52,9 +64,13 @@ class MainView extends React.Component {
     if(this.state.active.menu === true){
       return(
         <div>
-          <textarea value={this.state.str} onChange={(event) => {this.textareaEvent(event); this.props.textareaEvent(event);}}></textarea>
+          <textarea value={this.input} onChange={this.textareaEvent}></textarea>
           <br/>
+          {/* Cryptography Toggles Go Here */}
+
           <button type="button" onClick={() => this.toggleView(false, "reverseEncrypt")}>Reverse Encrypt Toggle</button>
+
+          {/* END */}
         </div>
       );
     }
@@ -63,7 +79,11 @@ class MainView extends React.Component {
         <div>
           <button className="close" onClick={() => this.toggleView(true, this.state.active.current)}></button>
           <p>{this.state.str}</p>
+          {/* Cryptography Components Go Here */}
+
           {this.state.active.reverse && <Reverse translation="encrypt" subType="string" str={this.state.str}/>}
+
+          {/* END */}
 
         </div>
       );

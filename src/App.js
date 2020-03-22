@@ -10,12 +10,12 @@ class App extends React.Component {
 
     };
     this.str = "";
-    this.textareaEvent = this.textareaEvent.bind(this);
+    this.callBackStr = this.callBackStr.bind(this);
     this.getStr = this.getStr.bind(this);
   }
   
-  textareaEvent(event) {
-    this.str = event.target.value;
+  callBackStr(str) {
+    this.str = str;
   }
   getStr(){
     return this.str;
@@ -25,7 +25,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="split" id="main">
-          <MainView textareaEvent={this.textareaEvent}/>
+          <MainView callBackStr={this.callBackStr}/>
         </div>
         <div className="split" id="side">
           <SideView getStr={this.getStr}/>
