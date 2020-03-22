@@ -23,7 +23,6 @@ class MainView extends React.Component {
   textareaEvent(event) {
     this.input = event.target.value
     this.inputSanatize();
-    this.props.callBackStr(this.state.str);
   }
 
   inputSanatize(){ //Produces UpperCase string w/ no whitespace
@@ -31,7 +30,7 @@ class MainView extends React.Component {
     cleanStr = cleanStr.trim();
     cleanStr = cleanStr.toUpperCase();
     cleanStr = cleanStr.replace(/\s+/g, '');
-    this.setState({str: cleanStr});
+    this.setState({str: cleanStr}, this.props.callBackStr(cleanStr));
   }
 
   toggleView(menu, component){

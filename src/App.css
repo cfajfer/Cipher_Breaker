@@ -34,12 +34,20 @@
   top: 0;
   overflow-x: hidden;
 }
+.slider {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 25px!important;
+  height: 25px!important;
+}
 #main {
-  width: 65%;
   left: 0;
+  border-right: 1px solid lightgrey;
 }
 #side {
-  width: 35%;
   right: 0;
+  border-left: 1px solid lightgrey;
+  background-color: #fbfcff
 }
 
