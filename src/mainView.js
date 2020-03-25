@@ -63,7 +63,7 @@ class MainView extends React.Component {
     if(this.state.active.menu === true){
       return(
         <div>
-          <textarea value={this.input} onChange={this.textareaEvent}></textarea>
+          <textarea value={this.input} onChange={this.textareaEvent} id="mainInput"></textarea>
           <br/>
           {/* Cryptography Toggles Go Here */}
 
@@ -77,7 +77,7 @@ class MainView extends React.Component {
       return(
         <div>
           <button className="close" onClick={() => this.toggleView(true, this.state.active.current)}></button>
-          <p>{this.state.str}</p>
+          <textarea value={this.input} onChange={this.textareaEvent} id="mainInput" readOnly></textarea>
           {/* Cryptography Components Go Here */}
 
           {this.state.active.reverse && <Reverse translation="encrypt" subType="string" str={this.state.str}/>}

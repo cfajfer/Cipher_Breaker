@@ -50,4 +50,12 @@
   border-left: 1px solid lightgrey;
   background-color: #fbfcff
 }
+#mainInput{
+  width: 60%;
+  height: 200px;
+  font-size: 11pt;
+  font-family: Inconsolata, monospace;
+  color: white;
+  background-color: black;
+}
 
