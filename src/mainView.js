@@ -1,6 +1,8 @@
 import React from 'react';
 import Reverse from './reverse';
 import Atbash from './atbash';
+import FourSquare from './foursquare';
+
 class MainView extends React.Component {
   constructor(props) {
     super(props);
@@ -57,6 +59,17 @@ class MainView extends React.Component {
           }
         }));
         break;
+	  //Four Square add Jeremy Morgan
+	   case "foursquareEncrypt":
+        this.setState(prevState => ({
+          active: {
+          ...prevState.active,
+          current: "foursquareEncrypt",
+          menu: !this.state.active.menu,
+          foursquare: !this.state.active.foursquare,
+          }
+        }));
+        break;
       default:
         break;
     }
@@ -83,6 +96,10 @@ class MainView extends React.Component {
         {/*Add of Atbash Toggle Dylan Pettijohn*/}
 
         <button type="button" onClick={() => this.toggleView(false, "atbashEncrypt")}>Atbash Encrypt Toggle</button>
+		
+		{/*Add of Four Square Toggle Jeremy Morgan*/}
+		
+		<button type="button" onClick={() => this.toggleView(false, "foursquareEncrypt")}>Four Sqaure Encrypt Toggle</button>
 
           {/* END */}
         </div>
@@ -98,7 +115,8 @@ class MainView extends React.Component {
           {this.state.active.reverse && <Reverse translation="encrypt" subType="string" str={this.state.str}/>}
           {/*Add of Atbash Component Dylan pettijohn*/}
           {this.state.active.atbash && <Atbash translation="encrypt" subType="string" str={this.state.str}/>}
-
+		  {/*Add of Four Square Component Jeremy Morgan*/}
+		  {this.state.active.foursquare && <FourSquare translation="encrypt" subType="string" str={this.state.str}/>}
           {/* END */}
 
         </div>
