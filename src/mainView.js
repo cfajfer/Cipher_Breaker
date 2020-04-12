@@ -1,6 +1,6 @@
 import React from 'react';
 import Reverse from './reverse';
-
+import Atbash from './atbash';
 class MainView extends React.Component {
   constructor(props) {
     super(props);
@@ -44,8 +44,19 @@ class MainView extends React.Component {
           reverse: !this.state.active.reverse,
           }
         }));
+        
         break;
-
+      /*atbash add Dylan Pettijohn*/
+      case "atbashEncrypt":
+        this.setState(prevState => ({
+          active: {
+          ...prevState.active,
+          current: "atbashEncrypt",
+          menu: !this.state.active.menu,
+          atbash: !this.state.active.atbash,
+          }
+        }));
+        break;
       default:
         break;
     }
@@ -68,6 +79,10 @@ class MainView extends React.Component {
           {/* Cryptography Toggles Go Here */}
 
           <button type="button" onClick={() => this.toggleView(false, "reverseEncrypt")}>Reverse Encrypt Toggle</button>
+        
+        {/*Add of Atbash Toggle Dylan Pettijohn*/}
+
+        <button type="button" onClick={() => this.toggleView(false, "atbashEncrypt")}>Atbash Encrypt Toggle</button>
 
           {/* END */}
         </div>
@@ -81,6 +96,8 @@ class MainView extends React.Component {
           {/* Cryptography Components Go Here */}
 
           {this.state.active.reverse && <Reverse translation="encrypt" subType="string" str={this.state.str}/>}
+          {/*Add of Atbash Component Dylan pettijohn*/}
+          {this.state.active.atbash && <Atbash translation="encrypt" subType="string" str={this.state.str}/>}
 
           {/* END */}
 
