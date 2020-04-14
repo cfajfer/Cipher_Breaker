@@ -74,12 +74,10 @@ class Foursquare extends React.Component {
 				var temp5;
 				var temp6;
 				first1=this.str.charAt(x);
-				console.log(first1);
 				if(first1==="q") {
 					first1="u";
 				}
 				second=this.str.charAt(y);
-				console.log(second);
 				if(second==="q") {
 					second="u";
 				}
@@ -87,6 +85,8 @@ class Foursquare extends React.Component {
 				temp4=cipher1[temp3];
 				temp5=normal.indexOf(second);
 				temp6=cipher2[temp5];
+				console.log(temp4);
+				console.log(temp6);
 				string4=string4+temp4+temp6;
 				console.log(string4);
 			}
@@ -97,7 +97,9 @@ class Foursquare extends React.Component {
   
   Decrypt()
   {
+	  console.log("HI");
 	  this.str=this.str.toLowerCase();
+	  console.log(this.str);
 	  var undo=this.str;
 	  var normal=["a", "b", "c", "d", "e",
 		     "f", "g", "h", "i", "j",
@@ -116,7 +118,7 @@ class Foursquare extends React.Component {
 			  "l", "j", "z", "k", "p"];
 	  var string4="";
 	  var x;
-	  for(x=0; x<undo; x+=2) {
+	  for(x=0; x<undo.length; x+=2) {
 			//get rid of spaces
 			undo=undo.replace(/ /g, "");
 			var y=x+1
@@ -162,19 +164,19 @@ class Foursquare extends React.Component {
 	  }
   }
   
-  textareaEvent(event) {
-    this.setState({str: event.target.value});
-    this.foursquare();
-  }
+
+ 
 
   methodEvent(event) {
     let eventValue = event.target.value;
+	console.log(eventValue);
     if(eventValue === "encrypt"){
       this.options.translation = eventValue;
 	  this.foursquare();
     }
-    else if(eventValue==="decrypt")
+    if(eventValue === "decrypt")
 	{
+		console.log("HI");
 		this.options.translation = eventValue;
 		this.Decrypt();
 	}
@@ -188,7 +190,7 @@ class Foursquare extends React.Component {
     else{
       this.options.blockNum = parseInt(eventValue, 10);
     }
-    this.foursquare();
+    this.Decrypt();
   }
 
   render() {
