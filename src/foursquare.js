@@ -11,7 +11,7 @@ class Foursquare extends React.Component {
     //Class Variables
     this.options = {
       translation: props.translation, //values{"encrypt", "decrypt"}
-      type: "reverse",
+      type: "foursquare",
       subType: props.subType, //values{"string", "block"}
       blockNum: 1 //char break number
     };
@@ -46,10 +46,11 @@ class Foursquare extends React.Component {
 			  "l", "j", "z", "k", "p"];
     var x;
 	var localFour="";
+	var string4="";
+	this.str=this.str.toLowerCase();
 		for(x=0; x<this.str.length; x+=2) {
 			//get rid of spaces
 			this.str=this.str.replace(/ /g, "");
-			var string4=""
 			var y=x+1
 			//check if message has odd length
 			if(y===this.str.length) {
@@ -73,10 +74,12 @@ class Foursquare extends React.Component {
 				var temp5;
 				var temp6;
 				first1=this.str.charAt(x);
+				console.log(first1);
 				if(first1==="q") {
 					first1="u";
 				}
 				second=this.str.charAt(y);
+				console.log(second);
 				if(second==="q") {
 					second="u";
 				}
@@ -85,18 +88,96 @@ class Foursquare extends React.Component {
 				temp5=normal.indexOf(second);
 				temp6=cipher2[temp5];
 				string4=string4+temp4+temp6;
+				console.log(string4);
 			}
-			this.setState({strFour: localFour});
+			this.setState({strFour: string4});
 		}
 	 }
+  }
+  
+  Decrypt()
+  {
+	  this.str=this.str.toLowerCase();
+	  var undo=this.str;
+	  var normal=["a", "b", "c", "d", "e",
+		     "f", "g", "h", "i", "j",
+			 "k", "l", "m", "n", "o",
+			 "p", "r", "s", "t", "u",
+			 "v", "w", "x", "y", "z" ];
+	  var cipher1=["z", "g", "p", "t", "f",
+			  "o", "i", "h", "m", "u",
+			  "w", "d", "r", "c", "n",
+			  "y", "k", "e", "j", "a",
+			  "x", "v", "s", "b", "l"];
+	  var cipher2=["m", "f", "n", "b", "d",
+			  "c", "r", "h", "s", "a",
+			  "x", "y", "o", "g", "v",
+			  "i", "t", "u", "e", "w",
+			  "l", "j", "z", "k", "p"];
+	  var string4="";
+	  var x;
+	  for(x=0; x<undo; x+=2) {
+			//get rid of spaces
+			undo=undo.replace(/ /g, "");
+			var y=x+1
+			//check if message has odd length
+			if(y===undo.length) {
+				var first;
+				var temp1;
+				var temp2;
+				first=undo.charAt(x);
+				if(first==="q") {
+					first="u";
+				}
+				temp1=cipher1.indexOf(first);
+				temp2=normal[temp1];
+				string4=string4+temp2;
+				
+			}
+			else {
+				var first1;
+				var second;
+				var temp3;
+				var temp4;
+				var temp5;
+				var temp6;
+				first1=undo.charAt(x);
+				console.log(first1);
+				if(first1==="q") {
+					first1="u";
+				}
+				second=undo.charAt(y);
+				console.log(second);
+				if(second==="q") {
+					second="u";
+				}
+				temp3=cipher1.indexOf(first1);
+				temp4=normal[temp3];
+				temp5=cipher2.indexOf(second);
+				temp6=normal[temp5];
+				string4=string4+temp4+temp6;
+				console.log(string4);
+			}
+			this.setState({strFour: string4});
+	  }
+  }
+  
+  textareaEvent(event) {
+    this.setState({str: event.target.value});
+    this.foursquare();
   }
 
   methodEvent(event) {
     let eventValue = event.target.value;
-    if(eventValue === "encrypt" || eventValue === "decrypt"){
+    if(eventValue === "encrypt"){
       this.options.translation = eventValue;
+	  this.foursquare();
     }
-    this.foursquare();
+    else if(eventValue==="decrypt")
+	{
+		this.options.translation = eventValue;
+		this.Decrypt();
+	}
   }
 
   blockNumEvent(event) {
@@ -119,8 +200,7 @@ class Foursquare extends React.Component {
           <option value="decrypt">Decrypt</option>
         </select>
         <select value={this.options.subType} onChange={this.methodEvent}>
-          <option value="string">String Reverse</option>
-          <option value="block">Block Reverse</option>
+          <option value="string">String Foursquare</option>
         </select>
         <input type="number" id="blockNum" value={this.options.blockNum} onChange={this.blockNumEvent} style={this.state.blockNumVisibility}></input>
       </form>
@@ -131,6 +211,3 @@ class Foursquare extends React.Component {
 }
 
 export default Foursquare;
-
-
-
