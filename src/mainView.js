@@ -2,6 +2,7 @@ import React from 'react';
 import Reverse from './reverse';
 import Atbash from './atbash';
 import FourSquare from './foursquare';
+import ADFGVX from './ADFGVX';
 
 class MainView extends React.Component {
   constructor(props) {
@@ -57,6 +58,19 @@ class MainView extends React.Component {
           menu: !this.state.active.menu,
           atbash: !this.state.active.atbash,
           }
+  
+        }));
+        break;
+        /* add ADFGVX Dylan Pettijohn*/
+      case "ADFGVXEncrypt":
+        this.setState(prevState => ({
+          active: {
+          ...prevState.active,
+          current: "ADFGVXEncrypt",
+          menu: !this.state.active.menu,
+          ADFGVX: !this.state.active.ADFGVX,
+          }
+  
         }));
         break;
 	  //Four Square add Jeremy Morgan
@@ -96,6 +110,9 @@ class MainView extends React.Component {
         {/*Add of Atbash Toggle Dylan Pettijohn*/}
 
         <button type="button" onClick={() => this.toggleView(false, "atbashEncrypt")}>Atbash Encrypt Toggle</button>
+		 {/*Add of ADFGVX Toggle Dylan Pettijohn*/}
+
+     <button type="button" onClick={() => this.toggleView(false, "ADFGVXEncrypt")}>ADFGVX Encrypt Toggle</button>
 		
 		{/*Add of Four Square Toggle Jeremy Morgan*/}
 		
@@ -111,12 +128,16 @@ class MainView extends React.Component {
           <button className="close" onClick={() => this.toggleView(true, this.state.active.current)}></button>
           <textarea value={this.input} onChange={this.textareaEvent} id="mainInput" readOnly></textarea>
           {/* Cryptography Components Go Here */}
-
           {this.state.active.reverse && <Reverse translation="encrypt" subType="string" str={this.state.str}/>}
+          
           {/*Add of Atbash Component Dylan pettijohn*/}
           {this.state.active.atbash && <Atbash translation="encrypt" subType="string" str={this.state.str}/>}
-		  {/*Add of Four Square Component Jeremy Morgan*/}
-		  {this.state.active.foursquare && <FourSquare translation="encrypt" subType="string" str={this.state.str}/>}
+          
+          {/*Add of ADFGVX Component Dylan pettijohn*/}
+          {this.state.active.ADFGVX && <ADFGVX translation="encrypt" subType="string" str={this.state.str}/>}
+
+		      {/*Add of Four Square Component Jeremy Morgan*/}
+		      {this.state.active.foursquare && <FourSquare translation="encrypt" subType="string" str={this.state.str}/>}
           {/* END */}
 
         </div>
