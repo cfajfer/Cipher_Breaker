@@ -3,6 +3,7 @@ import Reverse from './reverse';
 import Atbash from './atbash';
 import FourSquare from './foursquare';
 import ADFGVX from './ADFGVX';
+import BIFID from './bifid';
 
 class MainView extends React.Component {
   constructor(props) {
@@ -83,6 +84,17 @@ class MainView extends React.Component {
           foursquare: !this.state.active.foursquare,
           }
         }));
+		break;
+		//Bifid add Jeremy Morgan
+	   case "bifidEncrypt":
+        this.setState(prevState => ({
+          active: {
+          ...prevState.active,
+          current: "bifidEncrypt",
+          menu: !this.state.active.menu,
+          bifid: !this.state.active.bifid,
+          }
+        }));
         break;
       default:
         break;
@@ -117,6 +129,10 @@ class MainView extends React.Component {
 		{/*Add of Four Square Toggle Jeremy Morgan*/}
 		
 		<button type="button" onClick={() => this.toggleView(false, "foursquareEncrypt")}>Four Sqaure Encrypt Toggle</button>
+		
+		{/*Add of Bifid Toggle Jeremy Morgan*/}
+		
+		<button type="button" onClick={() => this.toggleView(false, "bifidEncrypt")}>Bifid Encrypt Toggle</button>
 
           {/* END */}
         </div>
@@ -136,8 +152,11 @@ class MainView extends React.Component {
           {/*Add of ADFGVX Component Dylan pettijohn*/}
           {this.state.active.ADFGVX && <ADFGVX translation="encrypt" subType="string" str={this.state.str}/>}
 
-		      {/*Add of Four Square Component Jeremy Morgan*/}
-		      {this.state.active.foursquare && <FourSquare translation="encrypt" subType="string" str={this.state.str}/>}
+	      {/*Add of Four Square Component Jeremy Morgan*/}
+		  {this.state.active.foursquare && <FourSquare translation="encrypt" subType="string" str={this.state.str}/>}
+		  
+		  {/*Add of Four Square Component Jeremy Morgan*/}
+		  {this.state.active.bifid && <BIFID translation="encrypt" subType="string" str={this.state.str}/>}
           {/* END */}
 
         </div>
