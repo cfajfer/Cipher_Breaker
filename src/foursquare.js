@@ -45,20 +45,29 @@ class Foursquare extends React.Component {
   
   foursquare() {
 	  var localFour="";
+	  var first="";
+	  var second="";
+	  var temp1="";
+	  var temp2="";
+	  var temp3="";
+	  var temp4="";
+	  var temp5="";
+	  var temp6="";
 	  //quicker to do this than retype all arrays to uppercase.
 	  this.str=this.str.toLowerCase();
 	  if(this.options.translation==="encrypt") {
 		  for(this.i=0; this.i<this.str.length;this.i+=2) {
 			  this.j=this.i+1;
+			  console.log(this.i);
 			  //check if i is the last letter of the word, this
 			  //only needing to do one of the translations
-			  if(this.i===this.str.length) {
-				  var first=this.str.charAt(this.i);
+			  if(this.i===this.str.length-1) {
+				  first=this.str.charAt(this.i);
 				  if(first==="q"){
 					  first="u";
 				  }
-				  var temp1=this.normal.indexOf(first);
-				  var temp2=this.cipher1[temp1];
+				  temp1=this.normal.indexOf(first);
+				  temp2=this.cipher1[temp1];
 				  localFour=localFour+temp2;
 			  }
 			  else{
@@ -66,14 +75,14 @@ class Foursquare extends React.Component {
 				  if(first1==="q"){
 					  first1="u";
 				  }
-				  var second=this.str.charAt(this.j);
+				  second=this.str.charAt(this.j);
 				  if(second==="q"){
 					  second="u";
 				  }
-			  var temp3=this.normal.indexOf(first1);
-			  var temp4=this.cipher1[temp3];
-			  var temp5=this.normal.indexOf(second);
-			  var temp6=this.cipher2[temp5];
+			  temp3=this.normal.indexOf(first1);
+			  temp4=this.cipher1[temp3];
+			  temp5=this.normal.indexOf(second);
+			  temp6=this.cipher2[temp5];
 			  localFour=localFour+temp4+temp6;
 			  }
 		  }
@@ -85,12 +94,12 @@ class Foursquare extends React.Component {
 			  //check if i is the last letter of the word, this
 			  //only needing to do one of the translations
 			  if(this.i===this.str.length) {
-				  var first=this.str.charAt(this.i);
+				  first=this.str.charAt(this.i);
 				  if(first==="q"){
 					  first="u";
 				  }
-				  var temp1=this.cipher1.indexOf(first);
-				  var temp2=this.normal[temp1];
+				  temp1=this.cipher1.indexOf(first);
+				  temp2=this.normal[temp1];
 				  localFour=localFour+temp2;
 			  }
 			  else{
@@ -98,14 +107,14 @@ class Foursquare extends React.Component {
 				  if(first1==="q"){
 					  first1="u";
 				  }
-				  var second=this.str.charAt(this.j);
+				  second=this.str.charAt(this.j);
 				  if(second==="q"){
 					  second="u";
 				  }
-			  var temp3=this.cipher1.indexOf(first1);
-			  var temp4=this.normal[temp3];
-			  var temp5=this.cipher2.indexOf(second);
-			  var temp6=this.normal[temp5];
+			  temp3=this.cipher1.indexOf(first1);
+			  temp4=this.normal[temp3];
+			  temp5=this.cipher2.indexOf(second);
+			  temp6=this.normal[temp5];
 			  localFour=localFour+temp4+temp6;
 			  }
 		  }
