@@ -4,6 +4,7 @@ import Atbash from './atbash';
 import FourSquare from './foursquare';
 import ADFGVX from './ADFGVX';
 import BIFID from './bifid';
+import Trifid from './Trifid';
 
 class MainView extends React.Component {
   constructor(props) {
@@ -96,6 +97,18 @@ class MainView extends React.Component {
           }
         }));
         break;
+      /* add Trifid Dylan Pettijohn*/
+      case "TrifidEncrypt":
+        this.setState(prevState => ({
+          active: {
+          ...prevState.active,
+          current: "TrifidEncrypt",
+          menu: !this.state.active.menu,
+          Trifid: !this.state.active.Trifid,
+          }
+  
+        }));
+        break;
       default:
         break;
     }
@@ -134,6 +147,10 @@ class MainView extends React.Component {
 		
 		<button type="button" onClick={() => this.toggleView(false, "bifidEncrypt")}>Bifid Encrypt Toggle</button>
 
+    {/*Add of Trifid Toggle Jeremy Morgan*/}
+		
+		<button type="button" onClick={() => this.toggleView(false, "TrifidEncrypt")}>Trifid Encrypt Toggle</button>
+
           {/* END */}
         </div>
       );
@@ -157,6 +174,8 @@ class MainView extends React.Component {
 		  
 		  {/*Add of Four Square Component Jeremy Morgan*/}
 		  {this.state.active.bifid && <BIFID translation="encrypt" subType="string" str={this.state.str}/>}
+      {/*Add of Four Square Component Jeremy Morgan*/}
+		  {this.state.active.Trifid && <Trifid translation="encrypt" subType="string" str={this.state.str}/>} 
           {/* END */}
 
         </div>
