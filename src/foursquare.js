@@ -58,7 +58,6 @@ class Foursquare extends React.Component {
 	  if(this.options.translation==="encrypt") {
 		  for(this.i=0; this.i<this.str.length;this.i+=2) {
 			  this.j=this.i+1;
-			  console.log(this.i);
 			  //check if i is the last letter of the word, this
 			  //only needing to do one of the translations
 			  if(this.i===this.str.length-1) {
