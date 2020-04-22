@@ -119,10 +119,10 @@ class Bifid extends React.Component {
 	else {
 		console.log(this.str);
 		console.log(this.str.length);
-		for(var i=0;i<this.str.length;i++){
-			var temp=this.str.charAt(i);
-			for(var j=0;j<5;j++){
-				for(var k=0;k<5;k++) {
+		for(i=0;i<this.str.length;i++){
+			temp=this.str.charAt(i);
+			for(j=0;j<5;j++){
+				for(k=0;k<5;k++) {
 					if(this.array[j][k]===temp) {
 						this.decryptarray.push(j);
 						this.decryptarray.push(k);
@@ -134,7 +134,7 @@ class Bifid extends React.Component {
 		var column2=this.decryptarray;
 		var middle=this.decryptarray.length/2;
 		var row2=column2.splice(0, Math.ceil(middle));
-		for(var k=0;k<column2.length;k++) {
+		for(k=0;k<column2.length;k++) {
 			var rownum=row2[k];
 			var colnum=column2[k];
 			localBifid=localBifid+this.array[rownum][colnum];

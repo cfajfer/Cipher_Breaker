@@ -15,8 +15,8 @@ class App extends React.Component {
     };
     this.slider = 0;
     this.str = "";
-    this.callBackStr = this.callBackStr.bind(this);
     this.getStr = this.getStr.bind(this);
+    this.callBackStr = this.callBackStr.bind(this);
     this.sliderHandler = this.sliderHandler.bind(this);
   }
   

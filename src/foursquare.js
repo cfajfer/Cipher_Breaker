@@ -103,7 +103,7 @@ class Foursquare extends React.Component {
 				  localFour=localFour+temp2;
 			  }
 			  else{
-				  var first1=this.str.charAt(this.i);
+				  first1=this.str.charAt(this.i);
 				  if(first1==="q"){
 					  first1="u";
 				  }

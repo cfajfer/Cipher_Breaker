@@ -67,7 +67,6 @@ class ADFGVX extends React.Component {
     var cipher = "ADFGVX";
     var x;
     var y;
-    var newWord = "";
     var polyB;
     var Transcription ="";
     var word;

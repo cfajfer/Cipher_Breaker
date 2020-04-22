@@ -65,7 +65,7 @@ var cols="";
 var blocks="";
 for(let x = 0; x<word.length;x++)
 {
-if( block_one.indexOf(word[x]) != -1)
+if( block_one.indexOf(word[x]) !== -1)
 {
   block =0;
   row = col = null;
@@ -73,7 +73,7 @@ if( block_one.indexOf(word[x]) != -1)
   col = col%3;
   row = Math.floor(row/3);
 }
-if( block_two.indexOf(word[x]) != -1)
+if( block_two.indexOf(word[x]) !== -1)
 {
   block = 1;
   row = col = null;
@@ -81,7 +81,7 @@ if( block_two.indexOf(word[x]) != -1)
   col = col%3;
   row = Math.floor(row/3);
 }
-if(block_three.indexOf(word[x]) != -1)
+if(block_three.indexOf(word[x]) !== -1)
 {
   block = 2;
   row = col = null;
@@ -119,21 +119,21 @@ var ciphertext="";
 for(let x = 0; x<combination.length;x++)
 {
 newPosition = combination[x];
-if(newPosition[0]==0)
+if(newPosition[0]===0)
 {
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);
   ciphertext =ciphertext + block_one[3*newRow+newCol];
 
 }
-if(newPosition[0]==1)
+if(newPosition[0]===1)
 {
 
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);
   ciphertext =ciphertext + block_two[3*newRow+newCol];
 }
-if(newPosition[0]==2)
+if(newPosition[0]===2)
 {
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);
@@ -141,7 +141,6 @@ if(newPosition[0]==2)
   
 }
 }
-    ciphertext = ciphertext;
     }         
     var keyciphertext = alphabet + ciphertext;
     this.setState({strtrifid: keyciphertext});
@@ -167,7 +166,7 @@ var block_three = input.substring(18,27);
 var ciphertext = input.substring(27,input.length);
 for(let x=0;x<ciphertext.length;x++)
 {
-  if( block_one.indexOf(ciphertext[x]) != -1)
+  if( block_one.indexOf(ciphertext[x]) !== -1)
 {
   block =0;
   row = col = null;
@@ -175,7 +174,7 @@ for(let x=0;x<ciphertext.length;x++)
   col = col%3;
   row = Math.floor(row/3);
 }
-if( block_two.indexOf(ciphertext[x]) != -1)
+if( block_two.indexOf(ciphertext[x]) !== -1)
 {
   block = 1;
   row = col = null;
@@ -183,7 +182,7 @@ if( block_two.indexOf(ciphertext[x]) != -1)
   col = col%3;
   row = Math.floor(row/3);
 }
-if(block_three.indexOf(ciphertext[x]) != -1)
+if(block_three.indexOf(ciphertext[x]) !== -1)
 {
   block = 2;
   row = col = null;
@@ -213,17 +212,17 @@ rows =[];
 cols = [];
 for(let x = 0; x<chopText.length; x++)
 {
-  if(x%3==0)
+  if(x%3===0)
   {
     blocks[y] = chopText[x];
     y++
   }
-  if(x%3==1)
+  if(x%3===1)
   {
     rows[z] = chopText[x];
     z++
   }
-  if(x%3==2)
+  if(x%3===2)
   {
     cols[w] = chopText[x];
     w++
@@ -248,19 +247,19 @@ newPosition = "";
 for(let x = 0; x<indexPlaintext.length;x++)
 {
 newPosition = indexPlaintext[x];
-if(newPosition[0]==0)
+if(newPosition[0]===0)
 {
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);
   final =final + block_one[3*newRow+newCol];
 }
-if(newPosition[0]==1)
+if(newPosition[0]===1)
 {
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);
   final =final + block_two[3*newRow+newCol];
 }
-if(newPosition[0]==2)
+if(newPosition[0]===2)
 {
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);

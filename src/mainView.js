@@ -15,6 +15,11 @@ class MainView extends React.Component {
         current: "menu",
         menu: true,
         reverse: false,
+        atbash: false,
+        ADFGVX: false,
+        foursquare: false,
+        bifid: false,
+        trifid: false,
       },
       str: ""
     };
@@ -49,9 +54,8 @@ class MainView extends React.Component {
           reverse: !this.state.active.reverse,
           }
         }));
-        
         break;
-      /*atbash add Dylan Pettijohn*/
+
       case "atbashEncrypt":
         this.setState(prevState => ({
           active: {
@@ -63,7 +67,7 @@ class MainView extends React.Component {
   
         }));
         break;
-        /* add ADFGVX Dylan Pettijohn*/
+
       case "ADFGVXEncrypt":
         this.setState(prevState => ({
           active: {
@@ -75,7 +79,7 @@ class MainView extends React.Component {
   
         }));
         break;
-	  //Four Square add Jeremy Morgan
+
 	   case "foursquareEncrypt":
         this.setState(prevState => ({
           active: {
@@ -85,8 +89,8 @@ class MainView extends React.Component {
           foursquare: !this.state.active.foursquare,
           }
         }));
-		break;
-		//Bifid add Jeremy Morgan
+        break;
+    
 	   case "bifidEncrypt":
         this.setState(prevState => ({
           active: {
@@ -97,18 +101,19 @@ class MainView extends React.Component {
           }
         }));
         break;
-      /* add Trifid Dylan Pettijohn*/
+
       case "TrifidEncrypt":
         this.setState(prevState => ({
           active: {
           ...prevState.active,
           current: "TrifidEncrypt",
           menu: !this.state.active.menu,
-          Trifid: !this.state.active.Trifid,
+          Trifid: !this.state.active.trifid,
           }
   
         }));
         break;
+
       default:
         break;
     }
@@ -128,30 +133,12 @@ class MainView extends React.Component {
         <div>
           <textarea value={this.input} onChange={this.textareaEvent} id="mainInput"></textarea>
           <br/>
-          {/* Cryptography Toggles Go Here */}
-
           <button type="button" onClick={() => this.toggleView(false, "reverseEncrypt")}>Reverse Encrypt Toggle</button>
-        
-        {/*Add of Atbash Toggle Dylan Pettijohn*/}
-
-        <button type="button" onClick={() => this.toggleView(false, "atbashEncrypt")}>Atbash Encrypt Toggle</button>
-		 {/*Add of ADFGVX Toggle Dylan Pettijohn*/}
-
-     <button type="button" onClick={() => this.toggleView(false, "ADFGVXEncrypt")}>ADFGVX Encrypt Toggle</button>
-		
-		{/*Add of Four Square Toggle Jeremy Morgan*/}
-		
-		<button type="button" onClick={() => this.toggleView(false, "foursquareEncrypt")}>Four Sqaure Encrypt Toggle</button>
-		
-		{/*Add of Bifid Toggle Jeremy Morgan*/}
-		
-		<button type="button" onClick={() => this.toggleView(false, "bifidEncrypt")}>Bifid Encrypt Toggle</button>
-
-    {/*Add of Trifid Toggle Jeremy Morgan*/}
-		
-		<button type="button" onClick={() => this.toggleView(false, "TrifidEncrypt")}>Trifid Encrypt Toggle</button>
-
-          {/* END */}
+          <button type="button" onClick={() => this.toggleView(false, "atbashEncrypt")}>Atbash Encrypt Toggle</button>
+          <button type="button" onClick={() => this.toggleView(false, "ADFGVXEncrypt")}>ADFGVX Encrypt Toggle</button>
+		      <button type="button" onClick={() => this.toggleView(false, "foursquareEncrypt")}>Four Sqaure Encrypt Toggle</button>
+		      <button type="button" onClick={() => this.toggleView(false, "bifidEncrypt")}>Bifid Encrypt Toggle</button>
+		      <button type="button" onClick={() => this.toggleView(false, "TrifidEncrypt")}>Trifid Encrypt Toggle</button>
         </div>
       );
     }
@@ -160,24 +147,12 @@ class MainView extends React.Component {
         <div>
           <button className="close" onClick={() => this.toggleView(true, this.state.active.current)}></button>
           <textarea value={this.input} onChange={this.textareaEvent} id="mainInput" readOnly></textarea>
-          {/* Cryptography Components Go Here */}
           {this.state.active.reverse && <Reverse translation="encrypt" subType="string" str={this.state.str}/>}
-          
-          {/*Add of Atbash Component Dylan pettijohn*/}
           {this.state.active.atbash && <Atbash translation="encrypt" subType="string" str={this.state.str}/>}
-          
-          {/*Add of ADFGVX Component Dylan pettijohn*/}
           {this.state.active.ADFGVX && <ADFGVX translation="encrypt" subType="string" str={this.state.str}/>}
-
-	      {/*Add of Four Square Component Jeremy Morgan*/}
-		  {this.state.active.foursquare && <FourSquare translation="encrypt" subType="string" str={this.state.str}/>}
-		  
-		  {/*Add of Four Square Component Jeremy Morgan*/}
-		  {this.state.active.bifid && <BIFID translation="encrypt" subType="string" str={this.state.str}/>}
-      {/*Add of Four Square Component Jeremy Morgan*/}
-		  {this.state.active.Trifid && <Trifid translation="encrypt" subType="string" str={this.state.str}/>} 
-          {/* END */}
-
+		      {this.state.active.foursquare && <FourSquare translation="encrypt" subType="string" str={this.state.str}/>}
+		      {this.state.active.bifid && <BIFID translation="encrypt" subType="string" str={this.state.str}/>}
+		      {this.state.active.Trifid && <Trifid translation="encrypt" subType="string" str={this.state.str}/>} 
         </div>
       );
     }
