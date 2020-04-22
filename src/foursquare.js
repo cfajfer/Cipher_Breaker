@@ -154,9 +154,6 @@ class Foursquare extends React.Component {
           <option value="encrypt">Encrypt</option>
           <option value="decrypt">Decrypt</option>
         </select>
-        <select value={this.options.subType} onChange={this.methodEvent}>
-          <option value="string">String Foursquare</option>
-        </select>
         <input type="number" id="blockNum" value={this.options.blockNum} onChange={this.blockNumEvent} style={this.state.blockNumVisibility}></input>
       </form>
       <h4 id="foursquareEncodeOutput">{this.state.strFour}</h4>
