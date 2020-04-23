@@ -20,8 +20,9 @@ class Trifid extends React.Component {
     //Bind Update Methods
     this.methodEvent = this.methodEvent.bind(this);
     this.blockNumEvent = this.blockNumEvent.bind(this);
+    this.chunkString = this.chunkString.bind(this);
   }
-  
+
   componentDidMount(){
     this.trifid();
   }
@@ -94,9 +95,9 @@ rows = rows +""+ row;
 cols = cols+""+ col;
 index = index+ (block+""+row+""+col);
 }
-var chopblocks = chunkString(blocks, period);
-var choprows = chunkString(rows, period);
-var chopcols = chunkString(cols, period);
+var chopblocks = this.chunkString(blocks, period);
+var choprows = this.chunkString(rows, period);
+var chopcols = this.chunkString(cols, period);
 
 
 //this is where we concat everything together the blocks 
@@ -109,7 +110,7 @@ for(let x =0; x<chopblocks.length; x++)
   combination = combination +""+ chopblocks[x] +""+choprows[x] +""+chopcols[x];
 }
 
-combination = chunkString(combination,3);
+combination = this.chunkString(combination,3);
 
 var newPosition;
 var newRow=0;
@@ -203,7 +204,7 @@ for(let x = 0; x<blocks.length; x++)
 {
   plaintext = plaintext + blocks[x]+rows[x]+cols[x];
 }
-var chopText = chunkString(plaintext, period);
+var chopText = this.chunkString(plaintext, period);
 var y=0;
 var z=0;
 var w =0;
@@ -238,7 +239,7 @@ for(let x =0; x<blocks.length;x++)
 {
   indexPlaintext = indexPlaintext +""+ blocks[x]+""+rows[x]+""+cols[x];
 }
-indexPlaintext = chunkString(indexPlaintext,3);
+indexPlaintext = this.chunkString(indexPlaintext,3);
 console.log(indexPlaintext);
 var final = "";
 newRow = "";
@@ -295,6 +296,11 @@ this.setState({strtrifid: final});
     }
     this.trifid();
   }
+  chunkString(str, length) {
+    
+    this.methodEvent =  str.match(new RegExp('.{1,' + length + '}', 'g'));
+
+  }
 
   render() {
     return(
@@ -314,8 +320,7 @@ this.setState({strtrifid: final});
       </div>
     );
   }
+  
 }
-function chunkString(str, length) {
-  return str.match(new RegExp('.{1,' + length + '}', 'g'));
-}
+
 export default Trifid;
