@@ -108,7 +108,7 @@ class MainView extends React.Component {
           ...prevState.active,
           current: "TrifidEncrypt",
           menu: !this.state.active.menu,
-          Trifid: !this.state.active.trifid,
+          trifid: !this.state.active.trifid,
           }
   
         }));
@@ -152,7 +152,7 @@ class MainView extends React.Component {
           {this.state.active.ADFGVX && <ADFGVX translation="encrypt" subType="string" str={this.state.str}/>}
 		      {this.state.active.foursquare && <FourSquare translation="encrypt" subType="string" str={this.state.str}/>}
 		      {this.state.active.bifid && <BIFID translation="encrypt" subType="string" str={this.state.str}/>}
-		      {this.state.active.Trifid && <Trifid translation="encrypt" subType="string" str={this.state.str}/>} 
+		      {this.state.active.trifid && <Trifid translation="encrypt" subType="string" str={this.state.str}/>} 
         </div>
       );
     }
