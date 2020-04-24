@@ -1,7 +1,6 @@
 import React from 'react';
-import { Component} from 'react';
 
-class IS_AtbashOrRev extends React.Component {
+class IsAtbashOrRev extends React.Component {
 constructor(props) {
     
       super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
@@ -63,4 +62,4 @@ constructor(props) {
  }
 }
 
-export default IS_AtbashOrRev;
+export default IsAtbashOrRev;
