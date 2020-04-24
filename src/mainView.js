@@ -133,12 +133,13 @@ class MainView extends React.Component {
         <div>
           <textarea value={this.input} onChange={this.textareaEvent} id="mainInput"></textarea>
           <br/>
-          <button type="button" onClick={() => this.toggleView(false, "reverseEncrypt")}>Reverse Encrypt Toggle</button>
-          <button type="button" onClick={() => this.toggleView(false, "atbashEncrypt")}>Atbash Encrypt Toggle</button>
-          <button type="button" onClick={() => this.toggleView(false, "ADFGVXEncrypt")}>ADFGVX Encrypt Toggle</button>
-		      <button type="button" onClick={() => this.toggleView(false, "foursquareEncrypt")}>Four Sqaure Encrypt Toggle</button>
-		      <button type="button" onClick={() => this.toggleView(false, "bifidEncrypt")}>Bifid Encrypt Toggle</button>
-		      <button type="button" onClick={() => this.toggleView(false, "TrifidEncrypt")}>Trifid Encrypt Toggle</button>
+          <button type="button" className="button seperator" onClick={() => this.toggleView(false, "reverseEncrypt")}>Reverse Cipher</button>
+          <button type="button" className="button seperator" onClick={() => this.toggleView(false, "atbashEncrypt")}>Atbash Cipher</button>
+          <button type="button" className="button seperator" onClick={() => this.toggleView(false, "ADFGVXEncrypt")}>ADFGVX Cipher</button>
+          <br/>
+		      <button type="button" className="button seperator" onClick={() => this.toggleView(false, "foursquareEncrypt")}>Four Square Cipher</button>
+		      <button type="button" className="button seperator" onClick={() => this.toggleView(false, "bifidEncrypt")}>Bifid Cipher</button>
+		      <button type="button" className="button seperator" onClick={() => this.toggleView(false, "TrifidEncrypt")}>Trifid Cipher</button>
         </div>
       );
     }

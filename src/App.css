@@ -15,7 +15,8 @@
 }
 .close:before, .close:after {
   position: absolute;
-  left: 15px;
+  right: 13px;
+  top: 0px;
   content: ' ';
   height: 33px;
   width: 2px;
@@ -58,4 +59,31 @@
   color: white;
   background-color: black;
 }
+.button {
+    background: #3673d6;
+    color: white;
+    font-size: 22px;
+    border: 1px solid black;
+    padding: 15px 40px;
+    border-radius: 4px;
+    margin: 20px 20px;
+}
 
+.button:hover {
+    background: #336ac4;
+}
+
+.button:active {
+    background: #336ac4;
+    top: 2px;
+}
+
+.button:before {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    line-height: 3;
+    font-size: 140%;
+    width: 60px;
+}
