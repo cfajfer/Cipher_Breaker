@@ -1,6 +1,7 @@
 import React from 'react';
 import Frequency from './frequency';
-
+import ADFGVX_FREQ from './ADFGVXTool'
+import IS_AtbashOrRev from './AtbashAndReverseTool';
 class SideView extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +21,8 @@ class SideView extends React.Component {
     return(
       <div>
         <Frequency getStr={this.getStr}/>
+        <ADFGVX_FREQ getStr={this.getStr}/>
+        <IS_AtbashOrRev getStr={this.getStr}/>
       </div>
     );
   }
