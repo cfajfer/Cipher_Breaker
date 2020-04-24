@@ -19,7 +19,7 @@ class Bifid extends React.Component {
     //Bind Update Methods
 	this.array=[["P","H","U","G","M"],
 	            ["E","A","Y","L","N"],
-				["O","F","D","x","K"],
+				["O","F","D","X","K"],
 				["R","C","V","S","Z"],
 				["W","B","J","T","I"]];
 	this.columns=[];
@@ -38,6 +38,11 @@ class Bifid extends React.Component {
 	var localBifid="";
 	var keepGoing=1;
 	//encrypt method
+	//empty arrays
+	this.columns=[];
+	this.rows=[];
+	this.finalarray=[];
+	this.decryptarray=[];
 	if(this.options.translation==="encrypt") {
 		for(var i=0;i<this.str.length;i++){
 			var temp=this.str.charAt(i);
@@ -114,6 +119,10 @@ class Bifid extends React.Component {
 	}
 	//decrypt
 	else {
+		this.columns=[];
+		this.rows=[];
+		this.finalarray=[];
+		this.decryptarray=[];
 		for(i=0;i<this.str.length;i++){
 			temp=this.str.charAt(i);
 			for(j=0;j<5;j++){
@@ -125,13 +134,23 @@ class Bifid extends React.Component {
 				}
 			}
 		}
-		var column2=this.decryptarray;
 		var middle=this.decryptarray.length/2;
-		var row2=column2.splice(0, Math.ceil(middle));
-		for(k=0;k<column2.length;k++) {
-			var rownum=row2[k];
-			var colnum=column2[k];
-			localBifid=localBifid+this.array[rownum][colnum];
+		if(middle>5)
+		{
+			if(middle%5===0) {
+			
+			}
+				
+		}
+		else
+		{
+			var column2=this.decryptarray;
+			var row2=column2.splice(0, Math.ceil(middle));
+			for(k=0;k<column2.length;k++) {
+				var rownum=row2[k];
+				var colnum=column2[k];
+				localBifid=localBifid+this.array[rownum][colnum];
+			}
 		}
 		this.setState({strBifid: localBifid});
 	}
