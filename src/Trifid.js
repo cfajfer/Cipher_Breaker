@@ -20,9 +20,8 @@ class Trifid extends React.Component {
     //Bind Update Methods
     this.methodEvent = this.methodEvent.bind(this);
     this.blockNumEvent = this.blockNumEvent.bind(this);
-    this.chunkString = this.chunkString.bind(this);
   }
-
+  
   componentDidMount(){
     this.trifid();
   }
@@ -31,7 +30,24 @@ class Trifid extends React.Component {
   trifid() { 
     if(this.options.subType === "string" && this.str.length>0) 
     {
-   
+
+      if(this.str.length%5 ===4)
+      {
+        this.str = this.str.concat(".");
+      }
+      if(this.str.length%5 ===3)
+      {
+        this.str = this.str.concat("..");
+      }
+      if(this.str.length%5 ===2)
+      {
+        this.str = this.str.concat("...");
+      }
+      if(this.str.length%5 ===1)
+      {
+        this.str = this.str.concat("....");
+      }
+
 var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.";
 var block_one;
 var block_two;
@@ -56,10 +72,12 @@ block_two = alphabet.substring(9,18).split("");
 block_three = alphabet.substring(18,27).split("");
 
 var index = "";
-var block;
-var row;
-var col;
-var word = this.str;
+var block ="";
+var row="";
+var col="";
+var word="";
+word =this.str;
+
 var period = 5;
 var rows="";
 var cols="";
@@ -69,7 +87,6 @@ for(let x = 0; x<word.length;x++)
 if( block_one.indexOf(word[x]) !== -1)
 {
   block =0;
-  row = col = null;
   row = col = block_one.indexOf(word[x]);
   col = col%3;
   row = Math.floor(row/3);
@@ -77,7 +94,6 @@ if( block_one.indexOf(word[x]) !== -1)
 if( block_two.indexOf(word[x]) !== -1)
 {
   block = 1;
-  row = col = null;
   row = col = block_two.indexOf(word[x]);
   col = col%3;
   row = Math.floor(row/3);
@@ -85,7 +101,6 @@ if( block_two.indexOf(word[x]) !== -1)
 if(block_three.indexOf(word[x]) !== -1)
 {
   block = 2;
-  row = col = null;
   row = col = block_three.indexOf(word[x]);
   col = col%3;
   row = Math.floor(row/3);
@@ -95,9 +110,9 @@ rows = rows +""+ row;
 cols = cols+""+ col;
 index = index+ (block+""+row+""+col);
 }
-var chopblocks = this.chunkString(blocks, period);
-var choprows = this.chunkString(rows, period);
-var chopcols = this.chunkString(cols, period);
+var chopblocks = chunkString(blocks, period);
+var choprows = chunkString(rows, period);
+var chopcols = chunkString(cols, period);
 
 
 //this is where we concat everything together the blocks 
@@ -110,7 +125,7 @@ for(let x =0; x<chopblocks.length; x++)
   combination = combination +""+ chopblocks[x] +""+choprows[x] +""+chopcols[x];
 }
 
-combination = this.chunkString(combination,3);
+combination = chunkString(combination,3);
 
 var newPosition;
 var newRow=0;
@@ -120,21 +135,21 @@ var ciphertext="";
 for(let x = 0; x<combination.length;x++)
 {
 newPosition = combination[x];
-if(newPosition[0]===0)
+if(newPosition[0]==="0")
 {
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);
   ciphertext =ciphertext + block_one[3*newRow+newCol];
 
 }
-if(newPosition[0]===1)
+if(newPosition[0]==="1")
 {
 
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);
   ciphertext =ciphertext + block_two[3*newRow+newCol];
 }
-if(newPosition[0]===2)
+if(newPosition[0]==="2")
 {
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);
@@ -158,9 +173,9 @@ var row = "";
 var col = "";
 var period = 5;
 var block ="";
-var newCol;
-var newRow;
-var newPosition;
+var newCol ="";
+var newRow ="";
+var newPosition = "";
 var block_one = input.substring(0,9);
 var block_two = input.substring(9,18);
 var block_three = input.substring(18,27);
@@ -204,7 +219,7 @@ for(let x = 0; x<blocks.length; x++)
 {
   plaintext = plaintext + blocks[x]+rows[x]+cols[x];
 }
-var chopText = this.chunkString(plaintext, period);
+var chopText = chunkString(plaintext, period);
 var y=0;
 var z=0;
 var w =0;
@@ -235,12 +250,11 @@ blocks= blocks.join("");
 rows = rows.join("");
 cols = cols.join("");
 var indexPlaintext="";
-for(let x =0; x<blocks.length;x++)
+for(let x =0; x<blocks.length-5;x++)
 {
   indexPlaintext = indexPlaintext +""+ blocks[x]+""+rows[x]+""+cols[x];
 }
-indexPlaintext = this.chunkString(indexPlaintext,3);
-console.log(indexPlaintext);
+indexPlaintext = chunkString(indexPlaintext,3);
 var final = "";
 newRow = "";
 newCol = "";
@@ -248,27 +262,27 @@ newPosition = "";
 for(let x = 0; x<indexPlaintext.length;x++)
 {
 newPosition = indexPlaintext[x];
-if(newPosition[0]===0)
+if(newPosition[0]==="0")
 {
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);
   final =final + block_one[3*newRow+newCol];
 }
-if(newPosition[0]===1)
+if(newPosition[0]==="1")
 {
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);
   final =final + block_two[3*newRow+newCol];
 }
-if(newPosition[0]===2)
+if(newPosition[0]==="2")
 {
   newRow = parseInt(newPosition[1]);
   newCol = parseInt(newPosition[2]);
   final = final + block_three[3*newRow+newCol]; 
 }
 }
-
-this.setState({strtrifid: final});
+var finalanswer = final.split('.').join('');
+this.setState({strtrifid: finalanswer});
 
 
   }
@@ -296,11 +310,6 @@ this.setState({strtrifid: final});
     }
     this.trifid();
   }
-  chunkString(str, length) {
-    
-    this.methodEvent =  str.match(new RegExp('.{1,' + length + '}', 'g'));
-
-  }
 
   render() {
     return(
@@ -320,7 +329,8 @@ this.setState({strtrifid: final});
       </div>
     );
   }
-  
 }
-
+function chunkString(str, length) {
+  return str.match(new RegExp('.{1,' + length + '}', 'g'));
+}
 export default Trifid;
